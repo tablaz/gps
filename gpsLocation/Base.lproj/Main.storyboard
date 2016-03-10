@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="idE-wn-bZ8">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--City Bike Ride-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="gpsLocation" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,118 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avq-cj-W5n">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="QME-lQ-XAV"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="QME-lQ-XAV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <exclude reference="QME-lQ-XAV"/>
+                                    </mask>
+                                </variation>
+                            </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlv-6M-tFB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZK6-Xb-AId"/>
+                                    <barButtonItem title="Zoom In" id="VlB-9L-eee">
+                                        <connections>
+                                            <action selector="zoomIn:" destination="BYZ-38-t0r" id="bJy-VI-R3f"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LC6-wZ-cC7"/>
+                                    <barButtonItem title="Zoom Out" id="ALG-VW-kph">
+                                        <connections>
+                                            <action selector="zoomOut:" destination="BYZ-38-t0r" id="izf-RX-DAn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qC1-m2-UI6"/>
+                                    <barButtonItem title="Type" id="6LH-Xm-K4U">
+                                        <connections>
+                                            <action selector="changeType:" destination="BYZ-38-t0r" id="iGP-E6-kFr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="glF-2k-1sh"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="avq-cj-W5n" secondAttribute="bottom" id="2OM-en-j54">
+                                <variation key="widthClass=compact" constant="44"/>
+                            </constraint>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wlv-6M-tFB" secondAttribute="bottom" constant="38" id="JF6-xl-3eu">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="avq-cj-W5n" secondAttribute="trailing" constant="-20" id="ak9-j2-xvC"/>
+                            <constraint firstItem="wlv-6M-tFB" firstAttribute="trailing" secondItem="avq-cj-W5n" secondAttribute="trailing" id="eOW-d7-HMn"/>
+                            <constraint firstItem="wlv-6M-tFB" firstAttribute="leading" secondItem="avq-cj-W5n" secondAttribute="leading" id="mQF-pI-viP"/>
+                            <constraint firstItem="avq-cj-W5n" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="xYJ-kH-f8p"/>
+                            <constraint firstItem="avq-cj-W5n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="zXD-2h-MHW"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="avq-cj-W5n"/>
+                                <exclude reference="wlv-6M-tFB"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="ak9-j2-xvC"/>
+                                <exclude reference="xYJ-kH-f8p"/>
+                                <exclude reference="zXD-2h-MHW"/>
+                                <exclude reference="eOW-d7-HMn"/>
+                                <exclude reference="mQF-pI-viP"/>
+                                <exclude reference="2OM-en-j54"/>
+                                <exclude reference="JF6-xl-3eu"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="avq-cj-W5n"/>
+                                <include reference="wlv-6M-tFB"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="ak9-j2-xvC"/>
+                                <include reference="xYJ-kH-f8p"/>
+                                <include reference="zXD-2h-MHW"/>
+                                <include reference="eOW-d7-HMn"/>
+                                <include reference="mQF-pI-viP"/>
+                                <include reference="2OM-en-j54"/>
+                                <include reference="JF6-xl-3eu"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="City Bike Ride" id="W81-K3-chP"/>
+                    <connections>
+                        <outlet property="mapView" destination="avq-cj-W5n" id="bXI-wN-ebI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1162.5" y="337"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dm8-zJ-dms">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="idE-wn-bZ8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XyW-1i-T90">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ePm-30-qpd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDX-fJ-acy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244.5" y="337"/>
         </scene>
     </scenes>
 </document>
